@@ -78,6 +78,7 @@ function mostrarInputSalarios(){
         salarios[i].classList.remove("oculto");
         salarios[i].classList.add("mostrar");
     }
+    mostrarOcultarSalarios();
 }
 
 document.querySelector("#calcular").onclick = function(event){
@@ -95,15 +96,14 @@ document.querySelector("#calcular").onclick = function(event){
         
     const salarioIntegrante = document.querySelectorAll(".input-salario");
         if(salarioIntegrante[0].className === "input-salario mostrar"){   
+            mostrarCalculosSalarios();
             mostrarOcultarSalarios()         
         }
         
-    
     event.preventDefault();
 }
 
 function mostrarOcultarSalarios(){
-    mostrarCalculosSalarios();
     const botonSalario = document.querySelector("#calcular-salarios");
     botonSalario.textContent="Ocultar Salarios"
     botonSalario.onclick= function(){
