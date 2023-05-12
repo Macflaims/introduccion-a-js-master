@@ -15,12 +15,15 @@ document.querySelector("#boton-siguiente").onclick = function(event){
 }
 
 function crearIntegrantes(cantidadIntegrantes){
-    if(cantidadIntegrantes>0){
-        mostrarBotonCalcular();}
+    if(cantidadIntegrantes>1){
+        mostrarBotonCalcular();
+        for(let i=0;i<cantidadIntegrantes;i++){
+            crearIntegrante(i);
+        }
+    }
     else{
-        reset();}
-    for(let i=0;i<cantidadIntegrantes;i++){
-        crearIntegrante(i);}
+        reset();
+    }
 }
 
 function crearIntegrante(indice){
@@ -67,11 +70,12 @@ function ocultarCalculos(){
 
 document.querySelector("#calcular").onclick = function(event){
     const numeros = obtenerEdades();
+    if(numeros.length>1){
     document.querySelector("#edad-menor").textContent = `${obtenerMenor(numeros)}`
     document.querySelector("#edad-mayor").textContent = `${obtenerMayor(numeros)}`
     document.querySelector("#edad-promedio").textContent = `${obtenerPromedio(numeros)}`
     mostrarCalculos();
-    
+    }
     event.preventDefault();
 }
 
@@ -85,7 +89,9 @@ function obtenerEdades(){
     const integrantes = document.querySelectorAll(".integrantes input");
     const edades = [];
     for (let i=0;i<integrantes.length;i++){
-        edades.push(Number(integrantes[i].value));
+        if(Number(integrantes[i].value)){
+            edades.push(Number(integrantes[i].value))
+        };
     }
     return edades;
 }
