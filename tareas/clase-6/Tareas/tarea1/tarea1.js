@@ -23,6 +23,22 @@ function crearIntegrantes(cantidadIntegrantes){
         crearIntegrante(i);}
 }
 
+function crearIntegrante(indice){
+    const div = document.createElement('div');
+    div.className = "integrantes";
+
+    const label = document.createElement("label");
+    label.textContent = `Edad del integrante numero ${indice+1}`;
+    const input = document.createElement("input");
+    input.type = "number";
+
+    div.appendChild(label);
+    div.appendChild(input);
+
+    const integrantes = document.querySelector("#integrantes");
+    integrantes.appendChild(div);
+}
+
 function mostrarBotonCalcular(){
     document.querySelector("#calcular").className = "";
 }
@@ -48,21 +64,6 @@ function ocultarCalculos(){
     document.querySelector("#resultados-calculo").className = "oculto";
 }
 
-function crearIntegrante(indice){
-    const div = document.createElement('div');
-    div.className = "integrantes";
-
-    const label = document.createElement("label");
-    label.textContent = `Edad del integrante numero ${indice+1}`;
-    const input = document.createElement("input");
-    input.type = "number";
-
-    div.appendChild(label);
-    div.appendChild(input);
-
-    const integrantes = document.querySelector("#integrantes");
-    integrantes.appendChild(div);
-}
 
 document.querySelector("#calcular").onclick = function(event){
     const numeros = obtenerEdades();
