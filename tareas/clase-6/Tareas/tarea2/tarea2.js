@@ -60,13 +60,14 @@ function ocultarCalculos(){
 }
 
 document.querySelector("#calcular").onclick = function(event){
-    const numeros = obtenerSalarios();
-    document.querySelector("#salario-menor").textContent = `${obtenerMenor(numeros)}`
-    document.querySelector("#salario-mayor").textContent = `${obtenerMayor(numeros)}`
-    document.querySelector("#salario-promedio").textContent = `${obtenerPromedio(numeros)}`
-    document.querySelector("#salario-mensual-promedio").textContent = `${obtenerPromedioMensual(numeros)}`
+    const salarios = obtenerSalarios();
+    if(salarios.length>1){
+    document.querySelector("#salario-menor").textContent = `${obtenerMenor(salarios)}`
+    document.querySelector("#salario-mayor").textContent = `${obtenerMayor(salarios)}`
+    document.querySelector("#salario-promedio").textContent = `${obtenerPromedio(salarios)}`
+    document.querySelector("#salario-mensual-promedio").textContent = `${obtenerPromedioMensual(salarios)}`
     mostrarCalculos();
-    
+    }
     event.preventDefault();
 }
 
@@ -80,7 +81,9 @@ function obtenerSalarios(){
     const integrantes = document.querySelectorAll(".integrantes input");
     const salarios = [];
     for (let i=0;i<integrantes.length;i++){
-        salarios.push(Number(integrantes[i].value));
+        if(Number(integrantes[i].value)>0){
+            salarios.push(Number(integrantes[i].value));
+        }
     }
     return salarios;
 }
